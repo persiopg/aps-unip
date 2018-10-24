@@ -11,8 +11,11 @@ namespace aps_Formulario
     {
         public static void Main(string[] args)
         {
-            int op = 0;
 
+
+
+
+            int op = 0;
                     
             do
             {
@@ -25,7 +28,7 @@ namespace aps_Formulario
                 catch (Exception e)
                 {
                     Console.WriteLine("erro inesperado\n" + e.Message);
-                    op = 999;
+                    op = int.MaxValue;
                     Console.ReadKey();
                 }
 
@@ -35,10 +38,7 @@ namespace aps_Formulario
                         Console.Write("programa finalizado");
                         break;
                     case 1:// novo cadastro
-
-						aps.Dominio.Tela.NewClient();
-
-                        
+						aps.Dominio.Tela.NewClient();                        
                         Console.ReadKey();
                         break;
 
