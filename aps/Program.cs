@@ -11,10 +11,9 @@ namespace aps_Formulario
     {
         public static void Main(string[] args)
         {
-
-
-
-
+			ArquivoTxt tt = new ArquivoTxt();
+			tt.Read();
+			Console.ReadKey();
             int op = 0;
                     
             do
@@ -38,13 +37,12 @@ namespace aps_Formulario
                         Console.Write("programa finalizado");
                         break;
                     case 1:// novo cadastro
-						aps.Dominio.Tela.NewClient();                        
+						Tela.NewClient();                        
                         Console.ReadKey();
                         break;
 
                     case 2: // MOSTRAS TODOS OS CADATROS CEM ORDEM CRECENTE
-                        Console.Clear();
-                    
+						Tela.ShowClients();                        
                         Console.ReadKey();
                         break;
 

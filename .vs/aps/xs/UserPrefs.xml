@@ -1,11 +1,11 @@
 ﻿<Properties StartupConfiguration="{2195E89D-CBF0-40E2-8E31-5D0A11DE8C2E}|Default">
   <MonoDevelop.Ide.ItemProperties.aps PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="aps/Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="aps/Dominio/Tela.cs">
     <Files>
-      <File FileName="aps/Dominio/Tela.cs" Line="32" Column="1" />
-      <File FileName="aps/Dominio/Client.cs" Line="22" Column="29" />
-      <File FileName="aps/Dominio/ArquivoTxt.cs" Line="16" Column="6" />
-      <File FileName="aps/Program.cs" Line="34" Column="28" />
+      <File FileName="aps/Dominio/Tela.cs" Line="33" Column="1" />
+      <File FileName="aps/Dominio/Client.cs" Line="43" Column="16" />
+      <File FileName="aps/Dominio/ArquivoTxt.cs" Line="33" Column="14" />
+      <File FileName="aps/Program.cs" Line="17" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
