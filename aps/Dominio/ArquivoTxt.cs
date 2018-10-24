@@ -7,27 +7,23 @@ namespace aps.Dominio
     {
 
 		private static string local = "/home/persio/Área de Trabalho/eu";
+		private static string local1 = "/home/persio/Área de Trabalho/eu1";
 
-		public static void Save(Client Cl){
+		public static void Save(){
 			try{
-				using (StreamWriter Sv = File.AppendText(local))
+				using (StreamWriter Sv = File.AppendText(local1))
 				{
-
-
-					if (Client.Clientlt.Count != 0)
+					Client.Clientlt.Sort();
+					for (int i = 0; i < Client.Clientlt.Count; i++)
 					{
-						Client.Clientlt.Sort();
-						for (int i = 0; i < Client.Clientlt.Count; i++)
-						{
-							Sv.WriteLine(Client.Clientlt[i].salvarCadsatroTxt());
-						}
-						Sv.WriteLine(Cl.salvarCadsatroTxt().ToUpper());
+						Sv.WriteLine(Client.Clientlt[i].salvarCadsatroTxt());
 					}
-					else
-					{
-						Sv.WriteLine(Cl.salvarCadsatroTxt().ToUpper());
-					}
-				}			
+
+				}	
+
+                File.Delete(local);
+                FileInfo name = new FileInfo(local1);
+                name.MoveTo(local);
 			}
 			catch(IOException e){
                 Console.WriteLine("erro na leitura do arquivo");
@@ -35,30 +31,25 @@ namespace aps.Dominio
             } 
             
 		}
-		public void Read(){
+		public static void Read(){
 			try{
 				using(StreamReader Read = File.OpenText(local)){
 					while(!Read.EndOfStream){
-						string line = Read.ReadLine();
 
-							string[] Clients = line.Split('.');
-
-						/*string Name = Clients[0];
-						string LastName = Clients[1];
-						string Age = Clients[2];
-						string Sexy = Clients[3];
-						string CivilStade = Clients[4];
                         
+						string line = Read.ReadLine();
+						line.TrimEnd();
+						string[] Clients = line.Split('.');
 
-						Client TempCl = new Client(Name, LastName, Age, Sexy, CivilStade);
+						Client TempCl = new Client(Clients[0], Clients[1], Clients[2], Clients[3], Clients[4]);
 
-						Client.Clientlt.Add(TempCl);*/
-						for (int i = 0; i < 5; i++)
+						Client.Clientlt.Add(TempCl);
+						/*for (int i = 0; i < 5; i++)
 						{
 							Console.WriteLine(Clients[i]);
 						}
 
-						Clients = null;
+						Clients = null;*/
 					}
 				}
 			}

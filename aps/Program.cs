@@ -11,8 +11,7 @@ namespace aps_Formulario
     {
         public static void Main(string[] args)
         {
-			ArquivoTxt tt = new ArquivoTxt();
-			tt.Read();
+			ArquivoTxt.Read();
 			Console.ReadKey();
             int op = 0;
                     
