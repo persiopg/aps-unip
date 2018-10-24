@@ -34,6 +34,12 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Dominio\Tela.cs" />
+    <Compile Include="Dominio\Client.cs" />
+    <Compile Include="Dominio\ArquivoTxt.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Dominio\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
