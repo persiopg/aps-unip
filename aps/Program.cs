@@ -12,7 +12,7 @@ namespace aps_Formulario
         public static void Main(string[] args)
         {
 			ArquivoTxt.Read();
-			Console.ReadKey();
+
             int op = 0;
                     
             do
@@ -45,10 +45,10 @@ namespace aps_Formulario
                         Console.ReadKey();
                         break;
 
-                    case 3:
+                    case 3://ALTERAR CADATRO EXISTENTE
                         Console.Clear();
                         Console.WriteLine("alteraçao");
-                        
+						ArquivoTxt.alterar();
                         Console.ReadKey();
 
                         break;
@@ -59,11 +59,7 @@ namespace aps_Formulario
 
                 }
             } while (op != 0);
-
-
-
-
-            //Arquivo.mostrar();
+			ArquivoTxt.Save();
 
         }
     }

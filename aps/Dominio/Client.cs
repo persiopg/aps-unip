@@ -40,6 +40,13 @@ namespace aps.Dominio
 
         }
 
+		public string preview(){
+
+			return " Nome:\t\t" + Name +
+				"\n Sobrenome:\t" + LastName;
+		}
+
+
         public string salvarCadsatroTxt()
         {
             return Name + "." + LastName + "." + Idade + "." + Sexo + "." + EstadoCivil;

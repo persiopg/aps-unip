@@ -7,8 +7,10 @@ namespace aps.Dominio
 {
 	public class Tela
 	{
+        
 
-		public static void NewClient()
+
+		public static void NewClient()//
 		{
 			Console.Clear();
 			Console.WriteLine("digite o nome: ");
@@ -33,7 +35,7 @@ namespace aps.Dominio
 			Client.Clientlt.Sort();
 			for (int i = 0;i < Client.Clientlt.Count;i++){
 				Console.WriteLine("(" + (i + 1) + ")");
-				Console.WriteLine(Client.Clientlt[i]);
+				Console.WriteLine(Client.Clientlt[i].preview());
 			}
 		}
 	}
