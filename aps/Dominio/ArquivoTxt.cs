@@ -72,43 +72,65 @@ namespace aps.Dominio
 				Console.WriteLine("Digite a op q deseja alterar");
 				Console.WriteLine("(0)Todo|(1)nome|(2)sobrenome|(3)Idade|(4)Sexo|(5)Estado civil");
 				int opcao = int.Parse(Console.ReadLine());
-				switch(opcao){
-					case 0:
-						string name, lastname, age, sex, stagecivil;
+                switch (opcao)
+                {
+                    case 0:
+                        string name, lastname, age, sex, stagecivil;
 
-						Console.Write("Nome: ");
-						name = Console.ReadLine();
-						Console.Write("Sobrenome: ");
-						lastname = Console.ReadLine();
-						Console.Write("Idade: ");
+                        Console.Write("Nome: ");
+                        name = Console.ReadLine();
+                        Console.Write("Sobrenome: ");
+                        lastname = Console.ReadLine();
+                        Console.Write("Idade: ");
                         age = Console.ReadLine();
-						Console.Write("Sexo: ");
-						sex = Console.ReadLine();
-						Console.Write("estado civil: ");
-						stagecivil = Console.ReadLine();
+                        Console.Write("Sexo: ");
+                        sex = Console.ReadLine();
+                        Console.Write("estado civil: ");
+                        stagecivil = Console.ReadLine();
 
-						Client.Clientlt[op] = new Client(name, lastname, age, sex, stagecivil);
+                        Client.Clientlt[op] = new Client(name, lastname, age, sex, stagecivil);
 
-						Console.WriteLine("confirmar(s/n)");
-						Console.WriteLine(Client.Clientlt[op]);
-						char confirmacao = char.Parse(Console.ReadLine());
+                        Console.WriteLine("confirmar(s/n)");
+                        Console.WriteLine(Client.Clientlt[op]);
+                        char confirmacao = char.Parse(Console.ReadLine());
 
-						if (confirmacao == 's')
-						{
-							Save();
-						}
-						else
-						{
-							Client.Clientlt.Clear();
-							Read();
-						}
-
-                        
+                        if (confirmacao == 's' || confirmacao == 'S')
+                        {
+                            Save();
+                        }
+                        else
+                        {
+                            Client.Clientlt.Clear();
+                            Read();
+                        }
 
 
-						break;
-					case 1:
-                        
+
+
+                        break;
+                    case 1://alterar nome
+                        string namealt;
+
+                        Console.Write("Nome: ");
+                        namealt = Console.ReadLine();
+
+                        Client.Clientlt[op] = new Client(namealt, Client.Clientlt[op].LastName, Client.Clientlt[op].Idade, Client.Clientlt[op].Sexo, Client.Clientlt[op].EstadoCivil);
+
+
+                        Console.WriteLine("confirmar(s/n)");
+                        Console.WriteLine(Client.Clientlt[op]);
+                        char confir = char.Parse(Console.ReadLine());
+
+                        if (confir == 's' || confir == 'S')
+                        {
+                            Save();
+                        }
+                        else
+                        {
+                            Client.Clientlt.Clear();
+                            Read();
+                        }
+
                         break;
 					case 2:
 

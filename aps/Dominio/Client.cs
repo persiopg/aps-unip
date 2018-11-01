@@ -13,6 +13,12 @@ namespace aps.Dominio
         public string Idade { get; set; }
         public string Sexo { get; set; }
         public string EstadoCivil { get; set; }
+        public char Clas(){
+
+            char[] vetn = Name.Split();
+
+            return vetn[0];
+        }
 
 		public Client(string nome, string sobre, string ida, string sex, string est)
         {
