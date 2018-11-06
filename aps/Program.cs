@@ -48,7 +48,7 @@ namespace aps_Formulario
                     case 3://ALTERAR CADATRO EXISTENTE
                         Console.Clear();
                         Console.WriteLine("alteraçao");
-						ArquivoTxt.alterar();
+                        Tela.alterar();
                         Console.ReadKey();
 
                         break;
