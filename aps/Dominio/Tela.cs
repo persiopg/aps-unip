@@ -3,11 +3,9 @@ using System.IO;
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace aps.Dominio
-{
-    public class Tela
-    {
-        
+namespace aps.Dominio {
+    public class Tela {
+
 
 
         public static void NewClient()//
@@ -30,91 +28,108 @@ namespace aps.Dominio
 
             ArquivoTxt.Save();
         }
-        public static void ShowClients(){
+        public static void ShowClients() {
             Console.Clear();
             Client.Clientlt.Sort();
             List<char> preview = new List<char>();
             char opcao = ' ';
-            int cont = 0;
+            int cont = 0, contAcesso = 0;
             char comparar = ' ';
 
-            for (int i = 0; i < Client.Clientlt.Count;i++){
+            for (int i = 0; i < Client.Clientlt.Count; i++) {
                 char[] PrimeiraLetra = Client.Clientlt[i].Name.ToCharArray();
                 comparar = PrimeiraLetra[0];
 
-                if (i == 0 || opcao != comparar){
+                if (i == 0 || opcao != comparar) {
                     opcao = PrimeiraLetra[0];
                     preview.Add(opcao);
                 }
                 comparar = ' ';
                 PrimeiraLetra = null;
             }
-            for (int i = 0; i < preview.Count;i++){
+            for (int i = 0; i < preview.Count; i++) {
                 Console.Write(preview[i] + "(" + i + ") | ");
-                if(i%10 == 0 && i != 0){
+                if (i % 10 == 0 && i != 0) {
                     Console.WriteLine();
                 }
                 cont++;
             }
             Console.WriteLine("TODOS(" + cont + ")");
 
-            try
-            {
+            try {
                 int op = int.Parse(Console.ReadLine());
-                if (op == cont)
-                {
-                    for (int i = 0; i < Client.Clientlt.Count; i++)
-                    {
+                if (op == cont) {
+                    for (int i = 0; i < Client.Clientlt.Count; i++) {
+                        Console.WriteLine("(" + (i + 1) + ")");
                         Console.WriteLine(Client.Clientlt[i].preview());
+                        if ((i + 1) % 10 == 0 || (i + 1) == Client.Clientlt.Count) {
+
+                            Console.WriteLine("deseja acessar alugum cadastro?(s/n)");
+                            opcao = char.Parse(Console.ReadLine());
+                            if (opcao == 'S' || opcao == 's') {
+                                Console.Write("digite o codigo do cadastro:");
+                                contAcesso = int.Parse(Console.ReadLine());
+                                Console.Clear();
+                                Console.WriteLine(Client.Clientlt[(contAcesso - 1)]);
+                            }
+                            Console.ReadKey();
+                        }
+
+
                     }
                 }
-                else
-                {
+                else {
                     cont = 0;
-                    for (int i = 0; i < Client.Clientlt.Count; i++)
-                    {
+                    for (int i = 0; i < Client.Clientlt.Count; i++) {
 
                         char[] PrimeiraLetra = Client.Clientlt[i].Name.ToCharArray();
                         comparar = PrimeiraLetra[0];
-                        if (preview[op] == comparar)
-                        {
+                        if (preview[op] == comparar) {
                             cont++;
-                            Console.WriteLine("(" + (cont) + ")");
-                            Console.WriteLine(Client.Clientlt[i]);
-                            if (cont == 10)
-                            {
-                                Console.ReadKey();
+                            Console.WriteLine("(" + (i + 1) + ")");
+                            Console.WriteLine(Client.Clientlt[i].preview());
 
+                        }
+                        if ((cont + 1) % 10 == 0 || (i + 1) == Client.Clientlt.Count) {
+
+                            Console.WriteLine("deseja acessar alugum cadastro?(s/n)");
+                            opcao = char.Parse(Console.ReadLine());
+                            if (opcao == 'S' || opcao == 's') {
+                                Console.Write("digite o codigo do cadastro:");
+                                contAcesso = int.Parse(Console.ReadLine());
+                                Console.Clear();
+                                Console.WriteLine(Client.Clientlt[(contAcesso - 1)]);
                             }
+                            Console.ReadKey();
                         }
                     }
                 }
-            }catch(Exception e){
-                Console.WriteLine("ERRO Nº\n" + e.Message);
+            }
+            catch (Exception e) {
+                Console.WriteLine("ERRO Nº1\n" + e.Message);
             }
 
 
         }
         public static void alterar()//
         {
-            for (int i = 0; i < Client.Clientlt.Count; i++)
-            {
+            for (int i = 0; i < Client.Clientlt.Count; i++) {
 
                 Console.WriteLine("(" + (i + 1) + ")");
-                Console.WriteLine(Client.Clientlt[i]);
+                Console.WriteLine(Client.Clientlt[i].preview());
             }
 
-            try
-            {
+            try {
                 Console.Write("Digite o codigo do cadastro: ");
                 int op = int.Parse(Console.ReadLine());
+                Console.Clear();
+
                 op -= 1;
                 Console.WriteLine(Client.Clientlt[op]);
                 Console.WriteLine("Digite a op q deseja alterar");
                 Console.WriteLine("(0)Todo|(1)nome|(2)sobrenome|(3)Idade|(4)Sexo|(5)Estado civil");
                 int opcao = int.Parse(Console.ReadLine());
-                switch (opcao)
-                {
+                switch (opcao) {
                     case 0:
                         string name, lastname, age, sex, stagecivil;
 
@@ -131,16 +146,14 @@ namespace aps.Dominio
 
                         Client.Clientlt[op] = new Client(name, lastname, age, sex, stagecivil);
 
-                        Console.WriteLine("confirmar(s/n)");
+                        Console.WriteLine("CONFIRMAR(s/n)\n");
                         Console.WriteLine(Client.Clientlt[op]);
                         char confirmacao = char.Parse(Console.ReadLine());
 
-                        if (confirmacao == 's' || confirmacao == 'S')
-                        {
+                        if (confirmacao == 's' || confirmacao == 'S') {
                             ArquivoTxt.Save();
                         }
-                        else
-                        {
+                        else {
                             Client.Clientlt.Clear();
                             ArquivoTxt.Read();
                         }
@@ -158,24 +171,23 @@ namespace aps.Dominio
                         Client.Clientlt[op] = new Client(name_Alt, Client.Clientlt[op].LastName, Client.Clientlt[op].Idade, Client.Clientlt[op].Sexo, Client.Clientlt[op].EstadoCivil);
 
 
-                        Console.WriteLine("confirmar(s/n)");
+                        Console.Clear();
+                        Console.WriteLine("CONFIRMAR(s/n)\n");
                         Console.WriteLine(Client.Clientlt[op]);
                         char confirmacao_nome = char.Parse(Console.ReadLine());
 
-                        if (confirmacao_nome == 's' || confirmacao_nome == 'S')
-                        {
+                        if (confirmacao_nome == 's' || confirmacao_nome == 'S') {
                             ArquivoTxt.Save();
                             Client.Clientlt.Clear();
                             ArquivoTxt.Read();
                         }
-                        else
-                        {
+                        else {
                             Client.Clientlt.Clear();
                             ArquivoTxt.Read();
                         }
 
                         break;
-                    case 2:
+                    case 2://alterar sobrenome
                         string Sobrenome_Alt;
 
                         Console.Write("Sobrenome: ");
@@ -184,62 +196,101 @@ namespace aps.Dominio
                         Client.Clientlt[op] = new Client(Client.Clientlt[op].Name, Sobrenome_Alt, Client.Clientlt[op].Idade, Client.Clientlt[op].Sexo, Client.Clientlt[op].EstadoCivil);
 
 
-                        Console.WriteLine("confirmar(s/n)");
+                        Console.Clear();
+                        Console.WriteLine("CONFIRMAR(s/n)\n");
                         Console.WriteLine(Client.Clientlt[op]);
                         char confirmacao_Sobrenome = char.Parse(Console.ReadLine());
 
-                        if (confirmacao_Sobrenome == 's' || confirmacao_Sobrenome == 'S')
-                        {
+                        if (confirmacao_Sobrenome == 's' || confirmacao_Sobrenome == 'S') {
                             ArquivoTxt.Save();
                             Client.Clientlt.Clear();
                             ArquivoTxt.Read();
                         }
-                        else
-                        {
+                        else {
                             Client.Clientlt.Clear();
                             ArquivoTxt.Read();
                         }
 
                         break;
-                    case 3:
-                        string namealt;
+                    case 3://alterar idade
+                        string idade_Alt;
 
-                        Console.Write("Nome: ");
-                        namealt = Console.ReadLine();
+                        Console.Write("idade: ");
+                        idade_Alt = Console.ReadLine();
 
-                        Client.Clientlt[op] = new Client(namealt, Client.Clientlt[op].LastName, Client.Clientlt[op].Idade, Client.Clientlt[op].Sexo, Client.Clientlt[op].EstadoCivil);
+                        Client.Clientlt[op] = new Client(Client.Clientlt[op].Name, Client.Clientlt[op].LastName, idade_Alt, Client.Clientlt[op].Sexo, Client.Clientlt[op].EstadoCivil);
 
-
-                        Console.WriteLine("confirmar(s/n)");
+                        Console.Clear();
+                        Console.WriteLine("CONFIRMAR(s/n)\n");
                         Console.WriteLine(Client.Clientlt[op]);
-                        char confir = char.Parse(Console.ReadLine());
+                        char confirmacao_idade = char.Parse(Console.ReadLine());
 
-                        if (confir == 's' || confir == 'S')
-                        {
+                        if (confirmacao_idade == 's' || confirmacao_idade == 'S') {
                             ArquivoTxt.Save();
                             Client.Clientlt.Clear();
                             ArquivoTxt.Read();
                         }
-                        else
-                        {
+                        else {
                             Client.Clientlt.Clear();
                             ArquivoTxt.Read();
                         }
 
                         break;
                     case 4:
+                        string sexo_Alt;
+
+                        Console.Write("sexo: ");
+                        sexo_Alt = Console.ReadLine();
+
+                        Client.Clientlt[op] = new Client(Client.Clientlt[op].Name, Client.Clientlt[op].LastName, Client.Clientlt[op].Idade, sexo_Alt, Client.Clientlt[op].EstadoCivil);
+
+                        Console.Clear();
+                        Console.WriteLine("CONFIRMAR(s/n)\n");
+                        Console.WriteLine(Client.Clientlt[op]);
+                        char confirmacao_sexo = char.Parse(Console.ReadLine());
+
+                        if (confirmacao_sexo == 's' || confirmacao_sexo == 'S') {
+                            ArquivoTxt.Save();
+                            Client.Clientlt.Clear();
+                            ArquivoTxt.Read();
+                        }
+                        else {
+                            Client.Clientlt.Clear();
+                            ArquivoTxt.Read();
+                        }
 
                         break;
                     case 5:
+                        string EstCiv_alt;
+
+                        Console.Write("Estado Civil: ");
+                        EstCiv_alt = Console.ReadLine();
+
+                        Client.Clientlt[op] = new Client(Client.Clientlt[op].Name, Client.Clientlt[op].LastName, Client.Clientlt[op].Idade, Client.Clientlt[op].Sexo, EstCiv_alt);
+
+                        Console.Clear();
+                        Console.WriteLine("CONFIRMAR(s/n)\n");
+                        Console.WriteLine(Client.Clientlt[op]);
+                        char confirmacao_EstCiv = char.Parse(Console.ReadLine());
+
+                        if (confirmacao_EstCiv == 's' || confirmacao_EstCiv == 'S') {
+                            ArquivoTxt.Save();
+                            Client.Clientlt.Clear();
+                            ArquivoTxt.Read();
+                        }
+                        else {
+                            Client.Clientlt.Clear();
+                            ArquivoTxt.Read();
+                        }
 
                         break;
                 }
 
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
+            catch (Exception e) {
+                Console.WriteLine("ERRO Nº2\n" + e.Message);
             }
+
 
 
         }

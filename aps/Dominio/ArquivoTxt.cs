@@ -6,8 +6,8 @@ namespace aps.Dominio
     public class ArquivoTxt
     {
 
-		private static string local = "/home/persio/Área de Trabalho/eu";
-		private static string local1 = "/home/persio/Área de Trabalho/eu1";
+		private static string local = "C:\\Users\\user\\Desktop\\aps-unip mono\\aps-unip\\test.txt";
+		private static string local1 = "C:\\Users\\user\\Desktop\\aps-unip mono\\aps-unip\\test1.txt";
 
 		public static void Save(){
 			try{
@@ -28,8 +28,7 @@ namespace aps.Dominio
 				Read();
 			}
 			catch(IOException e){
-                Console.WriteLine("erro na leitura do arquivo");
-                Console.WriteLine(e.Message);
+                Console.WriteLine("ERRO Nº3\n" + e.Message);
             } 
             
 		}
@@ -50,8 +49,7 @@ namespace aps.Dominio
 				}
 			}
 			catch(IOException e){
-                Console.WriteLine("erro na leitura do arquivo");
-                Console.WriteLine(e.Message);
+                Console.WriteLine("ERRO Nº4\n" + e.Message);
             } 
 		}
 		

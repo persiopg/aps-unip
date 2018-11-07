@@ -4,3 +4,10 @@
 /home/persio/Projects/aps/aps/obj/x86/Debug/aps.csproj.CoreCompileInputs.cache
 /home/persio/Projects/aps/aps/obj/x86/Debug/aps.exe
 /home/persio/Projects/aps/aps/obj/x86/Debug/aps.pdb
+C:\Users\user\Desktop\aps-unip mono\aps-unip\aps\obj\x86\Debug\aps.csprojAssemblyReference.cache
+C:\Users\user\Desktop\aps-unip mono\aps-unip\aps\obj\x86\Debug\aps.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\aps-unip mono\aps-unip\aps\obj\x86\Debug\aps.exe
+C:\Users\user\Desktop\aps-unip mono\aps-unip\aps\obj\x86\Debug\aps.pdb
+C:\Users\user\Desktop\aps-unip mono\aps-unip\aps\bin\Debug\aps.exe.config
+C:\Users\user\Desktop\aps-unip mono\aps-unip\aps\bin\Debug\aps.exe
+C:\Users\user\Desktop\aps-unip mono\aps-unip\aps\bin\Debug\aps.pdb

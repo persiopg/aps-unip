@@ -1,0 +1,5 @@
+C:\Users\user\Desktop\aps-unip mono\aps-unip\aps\bin\Release\aps.exe.config
+C:\Users\user\Desktop\aps-unip mono\aps-unip\aps\bin\Release\aps.exe
+C:\Users\user\Desktop\aps-unip mono\aps-unip\aps\obj\x86\Release\aps.csprojAssemblyReference.cache
+C:\Users\user\Desktop\aps-unip mono\aps-unip\aps\obj\x86\Release\aps.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\aps-unip mono\aps-unip\aps\obj\x86\Release\aps.exe
