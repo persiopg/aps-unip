@@ -13,16 +13,21 @@ namespace aps.Dominio
         public string Idade { get; set; }
         public string Sexo { get; set; }
         public string EstadoCivil { get; set; }
-       
+        public string Naturalidade { get; set; }
+        public string Procedencia { get; set; }
+       public string Profissao { get; set; }
 
 
-		public Client(string nome, string sobre, string ida, string sex, string est)
+		public Client(string nome, string sobre, string ida, string sex, string est, string nat,string proced,string prof)
         {
             this.Name = nome;
             this.LastName = sobre;
             this.Idade = ida;
             this.Sexo = sex;
             this.EstadoCivil = est;
+            this.Naturalidade = nat;
+            this.Procedencia = proced;
+            this.Profissao = prof;
         }
 
 		public static List<Client> Clientlt = new List<Client>();
@@ -37,7 +42,7 @@ namespace aps.Dominio
             }
             else
             {
-                return Idade.CompareTo(outro.Idade);
+                return -Idade.CompareTo(outro.Idade);
             }
 
         }
@@ -52,7 +57,7 @@ namespace aps.Dominio
 
         public string salvarCadsatroTxt()
         {
-            return Name + "." + LastName + "." + Idade + "." + Sexo + "." + EstadoCivil;
+            return Name + "." + LastName + "." + Idade + "." + Sexo + "." + EstadoCivil + "." + Naturalidade + "." + Procedencia + "." + Profissao;
         }
 
         public override string ToString()
@@ -62,7 +67,9 @@ namespace aps.Dominio
                 "\n Idade:\t\t" + Idade +
                 "\n Sexo:\t\t" + Sexo +
                 "\n Estado Civil:\t" + EstadoCivil +
-                "\n";
+                "\n Naturalidade:\t"+ Naturalidade +
+                "\n Procedencia:\t" + Procedencia+
+                "\n Profissao:\t" + Profissao;
         }
 
 

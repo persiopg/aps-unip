@@ -18,7 +18,6 @@ namespace aps.Dominio
 					{
 						Sv.WriteLine(Client.Clientlt[i].salvarCadsatroTxt().ToUpper());
 					}
-
 				}	
 
                 File.Delete(local);
@@ -42,7 +41,7 @@ namespace aps.Dominio
 						line.TrimEnd();
 						string[] Clients = line.Split('.');
 
-						Client TempCl = new Client(Clients[0], Clients[1], Clients[2], Clients[3], Clients[4]);
+						Client TempCl = new Client(Clients[0], Clients[1], Clients[2], Clients[3], Clients[4], Clients[5], Clients[6], Clients[7]);
 
 						Client.Clientlt.Add(TempCl);
 					}

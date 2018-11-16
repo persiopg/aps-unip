@@ -18,7 +18,7 @@ namespace aps_Formulario
             do
             {
                 Console.Clear();
-                Console.WriteLine("digite \n(1)novo cadastro \n(2)todos os cadastros \n(3)alterar \n(0)sair");
+                Console.WriteLine("digite \n(1)novo cadastro \n(2)todos os cadastros \n(3)alterar \n(4)excluir \n(0)sair");
                 try
                 {
                     op = int.Parse(Console.ReadLine());
@@ -48,8 +48,11 @@ namespace aps_Formulario
                     case 3://ALTERAR CADATRO EXISTENTE
                         Console.Clear();
                         Console.WriteLine("alteraçao");
-                        Tela.alterar();
+                       // Tela.alterar();
                         Console.ReadKey();
+
+                        break;
+                    case 4:
 
                         break;
                     default:
