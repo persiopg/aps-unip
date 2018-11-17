@@ -1,14 +1,12 @@
 ﻿using System;
-using System.IO;
 using System.Collections.Generic;
-using System.Globalization;
 
 namespace aps.Dominio {
     public class Tela {
 
 
 
-        public static void NewClient()//
+        public static void NewClient()//novo client
         {
             Console.Clear();
             Console.WriteLine("digite o nome: ");
@@ -21,25 +19,44 @@ namespace aps.Dominio {
             string Sexy = Console.ReadLine();
             Console.WriteLine("digite o estado civil: ");
             string Civilstade = Console.ReadLine();
-            Console.WriteLine("digite o estado civil: ");
+            Console.WriteLine("digite o naturalidade: ");
             string Natural = Console.ReadLine();
-            Console.WriteLine("digite o estado civil: ");
+            Console.WriteLine("digite o procedencia: ");
             string proced = Console.ReadLine();
-            Console.WriteLine("digite o estado civil: ");
+            Console.WriteLine("digite o proficao: ");
             string Profissao = Console.ReadLine();
+            Console.Clear();
+            Console.Write("\n\nENDERECO\n\n");
+            Console.WriteLine("digite o endereço: ");
+            string endereco = Console.ReadLine();
+            Console.WriteLine("digite o cep: ");
+            string cep = Console.ReadLine();
+            Console.WriteLine("digite o estado: ");
+            string estado = Console.ReadLine();
 
-            Client Newcl = new Client(Name, LastName, Age, Sexy, Civilstade, Natural, proced, Profissao);
+
+            Client Newcl = new Client(Name, LastName, Age, Sexy, Civilstade, Natural, proced, Profissao, endereco, cep, estado);
 
             Client.Clientlt.Add(Newcl);
 
             ArquivoTxt.Save();
         }
-        public static void acerssarcadastro(int codigoAcesso) {            
+        public static void acerssarcadastro(int codigoAcesso) {//ACessa o client
             Console.Clear();
             Console.WriteLine(Client.Clientlt[(codigoAcesso - 1)]);
             
         }
-        public static void ShowClients() {
+        public static void excluir(int codigoAcesso) {//exclui o client
+            Console.Clear();
+            Console.WriteLine(Client.Clientlt[(codigoAcesso - 1)]);
+            Console.Write("deseja excluir?(S|N)");
+            char resposta = char.Parse(Console.ReadLine());
+            if (resposta == 's'||resposta == 'S') {
+                Client.Clientlt.Remove(Client.Clientlt[(codigoAcesso - 1)]);
+                ArquivoTxt.Save();
+            }
+        }
+        public static void ShowClients() {//mostra o client
             Console.Clear();
 
             Client.Clientlt.Sort();
@@ -82,9 +99,14 @@ namespace aps.Dominio {
                                 Console.Write("digite o codigo do cadastro:");
                                 contAcesso = int.Parse(Console.ReadLine());
                                 acerssarcadastro(contAcesso);
+                                Console.WriteLine("\ndeseja alterar Cadastro? (S|N)");
+                                char Resposta = char.Parse(Console.ReadLine());
+                                if (Resposta == 's' || Resposta == 'S') {
+                                    Console.Clear();
+                                    alterar(contAcesso);
+                                }
                                  i = Client.Clientlt.Count;
                             }
-                            Console.ReadKey();
                         }
 
 
@@ -110,9 +132,19 @@ namespace aps.Dominio {
                                 Console.Write("digite o codigo do cadastro:");
                                 contAcesso = int.Parse(Console.ReadLine());
                                 acerssarcadastro(contAcesso);
+                                Console.WriteLine("\n(0)ALTERAR|(1)EXCLUIR|(5)MENU");
+                                char Resposta = char.Parse(Console.ReadLine());
+                                if (Resposta == '0' ) {
+                                    Console.Clear();
+                                    alterar(contAcesso);
+                                }
+                                else if(Resposta == '1') {
+                                    Console.Clear();
+                                    excluir(contAcesso);
+
+                                }
                                 i = Client.Clientlt.Count;
                             }
-                            Console.ReadKey();
                         }
                     }
                 }
@@ -123,17 +155,17 @@ namespace aps.Dominio {
 
 
         }
-        public static void alterar(int op)//
+        public static void alterar(int op)//ALTERA CADASTRO
         {     
             try {
                 op -= 1;
                 Console.WriteLine(Client.Clientlt[op]);
                 Console.WriteLine("Digite a op q deseja alterar");
-                Console.WriteLine("(0)Todo|(1)nome|(2)sobrenome|(3)Idade|(4)Estado civil|(5)Profissao");
+                Console.WriteLine("(0)Todo|(1)nome|(2)sobrenome|(3)Idade|(4)Estado civil|(5)Profissao|(6)Endereco");
                 int opcao = int.Parse(Console.ReadLine());
                 switch (opcao) {
                     case 0:
-                        string name, lastname, age, sex, stagecivil , nat, proce, profi;
+                        string name, lastname, age, sex, stagecivil , nat, proce, profi, end, cep, est;
 
                         Console.Write("Nome: ");
                         name = Console.ReadLine();
@@ -151,9 +183,16 @@ namespace aps.Dominio {
                         proce = Console.ReadLine();
                         Console.Write("Profissao: ");
                         profi = Console.ReadLine();
+                        Console.Clear();
+                        Console.Write("\n\nENDERECO\n\n");
+                        Console.Write("Endereço: ");
+                        end = Console.ReadLine();
+                        Console.Write("Cep: ");
+                        cep = Console.ReadLine();
+                        Console.Write("Estado: ");
+                        est = Console.ReadLine();
 
-
-                        Client.Clientlt[op] = new Client(name, lastname, age, sex, stagecivil, nat, proce, profi);
+                        Client.Clientlt[op] = new Client(name, lastname, age, sex, stagecivil, nat, proce, profi, end, cep, est);
 
                         Console.WriteLine("CONFIRMAR(s/n)\n");
                         Console.WriteLine(Client.Clientlt[op]);
@@ -166,10 +205,6 @@ namespace aps.Dominio {
                             Client.Clientlt.Clear();
                             ArquivoTxt.Read();
                         }
-
-
-
-
                         break;
                     case 1://alterar nome
                         string name_Alt;
@@ -177,7 +212,7 @@ namespace aps.Dominio {
                         Console.Write("Nome: ");
                         name_Alt = Console.ReadLine();
 
-                        Client.Clientlt[op] = new Client(name_Alt, Client.Clientlt[op].LastName, Client.Clientlt[op].Idade, Client.Clientlt[op].Sexo, Client.Clientlt[op].EstadoCivil, Client.Clientlt[op].Naturalidade, Client.Clientlt[op].Procedencia, Client.Clientlt[op].Profissao);
+                        Client.Clientlt[op] = new Client(name_Alt, Client.Clientlt[op].LastName, Client.Clientlt[op].Idade, Client.Clientlt[op].Sexo, Client.Clientlt[op].EstadoCivil, Client.Clientlt[op].Naturalidade, Client.Clientlt[op].Procedencia, Client.Clientlt[op].Profissao, Client.Clientlt[op].endereco, Client.Clientlt[op].cep, Client.Clientlt[op].estado);
 
 
                         Console.Clear();
@@ -194,7 +229,6 @@ namespace aps.Dominio {
                             Client.Clientlt.Clear();
                             ArquivoTxt.Read();
                         }
-
                         break;
                     case 2://alterar sobrenome
                         string Sobrenome_Alt;
@@ -202,7 +236,7 @@ namespace aps.Dominio {
                         Console.Write("Sobrenome: ");
                         Sobrenome_Alt = Console.ReadLine();
 
-                        Client.Clientlt[op] = new Client(Client.Clientlt[op].Name, Sobrenome_Alt, Client.Clientlt[op].Idade, Client.Clientlt[op].Sexo, Client.Clientlt[op].EstadoCivil, Client.Clientlt[op].Naturalidade, Client.Clientlt[op].Procedencia, Client.Clientlt[op].Profissao);
+                        Client.Clientlt[op] = new Client(Client.Clientlt[op].Name, Sobrenome_Alt, Client.Clientlt[op].Idade, Client.Clientlt[op].Sexo, Client.Clientlt[op].EstadoCivil, Client.Clientlt[op].Naturalidade, Client.Clientlt[op].Procedencia, Client.Clientlt[op].Profissao, Client.Clientlt[op].endereco, Client.Clientlt[op].cep, Client.Clientlt[op].estado);
 
 
                         Console.Clear();
@@ -219,7 +253,6 @@ namespace aps.Dominio {
                             Client.Clientlt.Clear();
                             ArquivoTxt.Read();
                         }
-
                         break;
                     case 3://alterar idade
                         string idade_Alt;
@@ -227,7 +260,7 @@ namespace aps.Dominio {
                         Console.Write("idade: ");
                         idade_Alt = Console.ReadLine();
 
-                        Client.Clientlt[op] = new Client(Client.Clientlt[op].Name, Client.Clientlt[op].LastName, idade_Alt, Client.Clientlt[op].Sexo, Client.Clientlt[op].EstadoCivil, Client.Clientlt[op].Naturalidade, Client.Clientlt[op].Procedencia, Client.Clientlt[op].Profissao);
+                        Client.Clientlt[op] = new Client(Client.Clientlt[op].Name, Client.Clientlt[op].LastName, idade_Alt, Client.Clientlt[op].Sexo, Client.Clientlt[op].EstadoCivil, Client.Clientlt[op].Naturalidade, Client.Clientlt[op].Procedencia, Client.Clientlt[op].Profissao, Client.Clientlt[op].endereco, Client.Clientlt[op].cep, Client.Clientlt[op].estado);
 
                         Console.Clear();
                         Console.WriteLine("CONFIRMAR(s/n)\n");
@@ -243,15 +276,14 @@ namespace aps.Dominio {
                             Client.Clientlt.Clear();
                             ArquivoTxt.Read();
                         }
-
                         break;
-                    case 4:
+                    case 4://ALTERA ESTADO CIVIL
                         string EstCiv_alt;
 
                         Console.Write("Estado Civil: ");
                         EstCiv_alt = Console.ReadLine();
 
-                        Client.Clientlt[op] = new Client(Client.Clientlt[op].Name, Client.Clientlt[op].LastName, Client.Clientlt[op].Idade, Client.Clientlt[op].Sexo, EstCiv_alt, Client.Clientlt[op].Naturalidade, Client.Clientlt[op].Procedencia, Client.Clientlt[op].Profissao);
+                        Client.Clientlt[op] = new Client(Client.Clientlt[op].Name, Client.Clientlt[op].LastName, Client.Clientlt[op].Idade, Client.Clientlt[op].Sexo, EstCiv_alt, Client.Clientlt[op].Naturalidade, Client.Clientlt[op].Procedencia, Client.Clientlt[op].Profissao, Client.Clientlt[op].endereco, Client.Clientlt[op].cep, Client.Clientlt[op].estado);
 
                         Console.Clear();
                         Console.WriteLine("CONFIRMAR(s/n)\n");
@@ -267,14 +299,13 @@ namespace aps.Dominio {
                             Client.Clientlt.Clear();
                             ArquivoTxt.Read();
                         }
-
                         break;
-                    case 5:
+                    case 5://ALTERA PROFISSAO
                         string Profissao_Alt;
                         Console.Write("Profissao: ");
                         Profissao_Alt = Console.ReadLine();
 
-                        Client.Clientlt[op] = new Client(Client.Clientlt[op].Name, Client.Clientlt[op].LastName, Client.Clientlt[op].Idade, Client.Clientlt[op].Sexo, Client.Clientlt[op].EstadoCivil, Client.Clientlt[op].Naturalidade, Client.Clientlt[op].Procedencia, Profissao_Alt);
+                        Client.Clientlt[op] = new Client(Client.Clientlt[op].Name, Client.Clientlt[op].LastName, Client.Clientlt[op].Idade, Client.Clientlt[op].Sexo, Client.Clientlt[op].EstadoCivil, Client.Clientlt[op].Naturalidade, Client.Clientlt[op].Procedencia, Profissao_Alt, Client.Clientlt[op].endereco, Client.Clientlt[op].cep, Client.Clientlt[op].estado);
 
 
                         char confirmacao_ProfAlt = char.Parse(Console.ReadLine());
@@ -288,17 +319,39 @@ namespace aps.Dominio {
                             Client.Clientlt.Clear();
                             ArquivoTxt.Read();
                         }
+                        break;
+                    case 6://ALTERA ENDERECO
+                        string end_Alt, cep_alt, est_Alt;
+
+                        Console.Write("Endereço: ");
+                        end_Alt = Console.ReadLine();
+                        Console.Write("Cep: ");
+                        cep_alt = Console.ReadLine();
+                        Console.Write("Estado: ");
+                        est_Alt = Console.ReadLine();
+
+                        Client.Clientlt[op] = new Client(Client.Clientlt[op].Name, Client.Clientlt[op].LastName, Client.Clientlt[op].Idade, Client.Clientlt[op].Sexo, Client.Clientlt[op].EstadoCivil, Client.Clientlt[op].Naturalidade, Client.Clientlt[op].Procedencia, Client.Clientlt[op].Profissao, end_Alt, cep_alt, est_Alt);
+
+                        char confirmacao_endAlt = char.Parse(Console.ReadLine());
+
+                        if (confirmacao_endAlt == 's' || confirmacao_endAlt == 'S') {
+                            ArquivoTxt.Save();
+                            Client.Clientlt.Clear();
+                            ArquivoTxt.Read();
+                        }
+                        else {
+                            Client.Clientlt.Clear();
+                            ArquivoTxt.Read();
+                        }
 
                         break;
+                    default:
+                        break;
                 }
-
             }
             catch (Exception e) {
                 Console.WriteLine("ERRO Nº2\n" + e.Message);
             }
-
-
-
         }
     }
 }

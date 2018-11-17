@@ -1,8 +1,5 @@
 ﻿
 using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Globalization;
 using aps.Dominio;
 
 namespace aps_Formulario
@@ -18,7 +15,7 @@ namespace aps_Formulario
             do
             {
                 Console.Clear();
-                Console.WriteLine("digite \n(1)novo cadastro \n(2)todos os cadastros \n(3)alterar \n(4)excluir \n(0)sair");
+                Console.WriteLine("\n\n\n\tdigite \n\t(1)novo cadastro \n\t(2)todos os cadastros \n\t(0)sair");
                 try
                 {
                     op = int.Parse(Console.ReadLine());
@@ -39,22 +36,10 @@ namespace aps_Formulario
 						Tela.NewClient();                        
                         Console.ReadKey();
                         break;
-
-                    case 2: // MOSTRAS TODOS OS CADATROS CEM ORDEM CRECENTE
+                    case 2: // MOSTRAS TODOS OS CADATROS CEM ORDEM CRECENTE 
 						Tela.ShowClients();                        
                         Console.ReadKey();
-                        break;
-
-                    case 3://ALTERAR CADATRO EXISTENTE
-                        Console.Clear();
-                        Console.WriteLine("alteraçao");
-                       // Tela.alterar();
-                        Console.ReadKey();
-
-                        break;
-                    case 4:
-
-                        break;
+                        break;                  
                     default:
                         Console.WriteLine("opção invalida");
                         break;
