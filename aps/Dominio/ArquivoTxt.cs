@@ -5,8 +5,8 @@ namespace aps.Dominio
     public class ArquivoTxt
     {
 
-		private static string local = "C:\\Users\\user\\Desktop\\aps-unip mono\\aps-unip\\test.txt";
-		private static string local1 = "C:\\Users\\user\\Desktop\\aps-unip mono\\aps-unip\\test1.txt";
+		private static string local = "C:\\projetos\\aps-unip\\test.txt";
+		private static string local1 = "C:\\projetos\\aps-unip\\test1.txt";
 
 		public static void Save(){
 			try{
